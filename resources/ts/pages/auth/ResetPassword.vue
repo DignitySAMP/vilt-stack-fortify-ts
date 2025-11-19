@@ -54,23 +54,24 @@
 </template>
 <script setup lang="ts">
 import AppLayout from '@/layout/AppLayout.vue';
-import { useForm } from '@inertiajs/vue3';
+import { InertiaForm, useForm } from "@inertiajs/vue3";
 
-const props = defineProps({
-    token: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-});
 
-const form = useForm({
+interface Props {
+    token: string;
+    email: string;
+}
+
+const props = defineProps<Props>();
+
+const form: InertiaForm<{
+    email: string,
+    password: string,
+    password_confirmation: string
+}> = useForm({
     email: props.email,
-    password: '',
-    password_confirmation: '',
+    password: "",
+    password_confirmation: "",
 });
 
 const submit = () => {

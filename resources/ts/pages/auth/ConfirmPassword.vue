@@ -33,10 +33,12 @@
 </template>
 <script setup lang="ts">
 import AppLayout from '@/layout/AppLayout.vue';
-import { useForm } from '@inertiajs/vue3';
+import { InertiaForm, useForm } from "@inertiajs/vue3";
 
-const form = useForm({
-    password: '',
+const form: InertiaForm<{
+    password: string,
+}> = useForm({
+    password: "",
 });
 
 const submit = () => {

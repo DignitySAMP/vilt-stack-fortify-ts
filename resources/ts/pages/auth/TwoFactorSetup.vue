@@ -65,21 +65,21 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { InertiaForm, useForm, usePage } from "@inertiajs/vue3";
+import axios from "axios";
 
 import AppLayout from '@/layout/AppLayout.vue';
-import { useForm, usePage } from '@inertiajs/vue3';
-import axios from 'axios';
 
-const form = useForm<
-    {
-        code: string;
-    } & Record<string, string | string[]>
->({
-    code: '',
+const form: InertiaForm<{
+    code: string
+    confirmTwoFactorAuthentication?: string;
+}> = useForm({
+    code: "",
 });
 
-const qrCode = ref(null);
-const recoveryCodes = ref([]);
+const qrCode = ref<string|null>(null);
+const recoveryCodes = ref<Array<string>>([]);
+const confirmed = ref<boolean>(false);
 
 const submitEnable = () => {
     form.post(route('two-factor.enable'), {
@@ -93,7 +93,6 @@ const submitEnable = () => {
     });
 };
 
-const confirmed = ref(false);
 const submitConfirm = () => {
     form.post(route('two-factor.confirm'), {
         preserveScroll: true,

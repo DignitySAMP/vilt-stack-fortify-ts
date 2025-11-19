@@ -60,13 +60,18 @@
 </template>
 <script setup lang="ts">
 import AppLayout from '@/layout/AppLayout.vue';
-import { Link, useForm } from '@inertiajs/vue3';
+import { InertiaForm, Link, useForm } from "@inertiajs/vue3";
 
-const form = useForm({
-    email: '', // OR username: ''
-    password: '',
+const form: InertiaForm<{
+    email: string;
+    password: string;
+    remember: boolean
+}> = useForm({
+    email: "", // OR username: ''
+    password: "",
     remember: false,
 });
+
 
 const submit = () => {
     form.post(route('login.store'), {

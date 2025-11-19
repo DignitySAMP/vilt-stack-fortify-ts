@@ -61,14 +61,17 @@
 
 <script setup lang="ts">
 import AppLayout from '@/layout/AppLayout.vue';
-import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { InertiaForm, useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
 
-const recoveryMode = ref(false);
+const recoveryMode = ref<boolean>(false);
 
-const form = useForm({
-    code: '',
-    recovery_code: '',
+const form: InertiaForm<{
+    code: string,
+    recovery_code: string,
+}> = useForm({
+    code: "",
+    recovery_code: "",
 });
 
 const submitCode = () => {

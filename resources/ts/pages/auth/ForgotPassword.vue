@@ -43,10 +43,12 @@
 </template>
 <script setup lang="ts">
 import AppLayout from '@/layout/AppLayout.vue';
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { InertiaForm, Link, useForm, usePage } from "@inertiajs/vue3";
 
-const form = useForm({
-    email: '',
+const form: InertiaForm<{
+    email: string
+}> = useForm({
+    email: "",
 });
 
 const submit = () => {
